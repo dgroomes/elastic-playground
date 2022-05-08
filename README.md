@@ -34,7 +34,7 @@ Follow these instructions to execute an Elasticsearch demo:
    * It should look like this:
      ```text
      $ ./load-zip-areas.sh
-     ⏳ Loading 100 ZIP area records into Elasticsearch...
+     ⏳ Loading 1000 ZIP area records into Elasticsearch...
      ✨ Done.
      ```
 4. Query the data:

@@ -1,0 +1,9 @@
+{
+  "query": {
+    "match": {
+      "city": {
+        "query": "island"
+      }
+    }
+  }
+}

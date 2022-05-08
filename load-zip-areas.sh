@@ -21,7 +21,7 @@ set -eu
 
 zips_file="$project_dir/zips.jsonl"
 origin="[::1]:9200"
-limit=100
+limit=1000
 
 # Read from the ZIP areas JSON file and upload to the Elasticsearch instance.
 function load() {

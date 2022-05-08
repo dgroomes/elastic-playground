@@ -28,7 +28,7 @@ function choose_query() {
 function execute_query() {
   local query_file=$(choose_query)
 
-  curl -X GET \
+  curl -X GET --show-error --silent \
    --url "$origin/zip_areas/_search?pretty" \
    --header 'Content-Type: application/json' --data "@${query_file}"
 }

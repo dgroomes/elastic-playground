@@ -155,7 +155,7 @@ commands!
 
 General clean-ups, TODOs and things I wish to implement for this project:
 
-* More queries. Search by name, population. Aggregate the populations. Other interesting queries?
+* IN PROGRESS More queries. Search by name, population. Aggregate the populations. Other interesting queries?
 
 
 ## Reference

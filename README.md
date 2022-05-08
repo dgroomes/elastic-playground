@@ -160,4 +160,9 @@ General clean-ups, TODOs and things I wish to implement for this project:
 
 ## Reference
 
-* <https://github.com/elastic/elasticsearch>
+* [Elasticsearch GitHub repository](thttps://github.com/elastic/elasticsearch)
+* [Elasticsearch guide: *Search your data*](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html)
+* [Elasticsearch guide: *Term-level queries*](https://www.elastic.co/guide/en/elasticsearch/reference/current/term-level-queries.html)
+  > You can use term-level queries to find documents based on precise values in structured data. Examples of structured data include date ranges, IP addresses, prices, or product IDs.
+* [Elasticsearch guide: *Query and filter context*](https://www.elastic.co/guide/en/elasticsearch/reference/8.2/query-filter-context.html)
+  > In a filter context, a query clause answers the question "*Does this document match this query clause?*" The answer is a simple Yes or No–no scores are calculated. Filter context is mostly used for filtering structured data...

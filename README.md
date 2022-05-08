@@ -1,7 +1,5 @@
 # elastic-playground
 
-NOT FULLY IMPLEMENTED
-
 📚 Learning and exploring the Elastic stack.
 
 
@@ -13,21 +11,92 @@ The Elastic stack is in widespread use. I think it has number one market share i
 have the most polished user and developer experience, it has its bright spots and is feature-rich. I would like to learn
 it better. This repository is a playground-style codebase which helps me gather my thoughts, findings, and executable
 instructions for learning a technology. In this case, the technology is Elasticsearch. I might venture to other components
-of the Elastic stack like Kibana.  
+of the Elastic stack, like Kibana.  
 
 
 ## Instructions
 
 Follow these instructions to execute an Elasticsearch demo:
 
-1. Start Elasticsearch
-   * `elasticsearch`
-   * This will print out lots of stuff. Read the output to boost your understanding. Skim it, at least.
+1. Install Elasticsearch
    * A pre-requisite to this step is installing Elasticsearch to your computer. Read the section [*Elasticsearch for Personal Use*](#elasticsearch-for-personal-use)
      for more information. Consider alternative installation options, if desired.
-2. Upload some data
-   * TODO
-
+2. Start Elasticsearch:
+   * ```shell
+     elasticsearch
+     ```
+   * This will print out lots of stuff. Read the output to boost your understanding. Elasticsearch should be listening
+     for requests at <http://[::1]:9200> and various other ports, depending on your configuration.
+3. Upload some data:
+   * ```shell
+     ./load-zip-areas.sh
+     ```
+   * It should look like this:
+     ```text
+     $ ./load-zip-areas.sh
+     ⏳ Loading 100 ZIP area records into Elasticsearch...
+     ✨ Done.
+     ```
+4. Query the data:
+   * ```shell
+     ./query-zip-areas.sh
+     ```
+   * It should look like this (abbreviated):
+     ```text
+     $ ./query-zip-areas.sh
+     {
+       "took": 10,
+       "timed_out": false,
+       "_shards": {
+         "total": 1,
+         "successful": 1,
+         "skipped": 0,
+         "failed": 0
+       },
+       "hits": {
+         "total": {
+           "value": 100,
+           "relation": "eq"
+         },
+         "max_score": 1.0,
+         "hits": [
+           {
+             "_index": "zip_areas",
+             "_id": "SPY2pIAB-VPuR9g79rxi",
+             "_score": 1.0,
+             "_source": {
+               "zip_code": "01001",
+               "city": "AGAWAM",
+               "loc": [
+                 -72.622739,
+                 42.070206
+               ],
+               "pop": 15338,
+               "state": "MA"
+             }
+           },
+           {
+             "_index": "zip_areas",
+             "_id": "SfY2pIAB-VPuR9g797xD",
+             "_score": 1.0,
+             "_source": {
+               "zip_code": "01002",
+               "city": "CUSHMAN",
+               "loc": [
+                 -72.51565,
+                 42.377017
+               ],
+               "pop": 36963,
+               "state": "MA"
+             }
+           } (abbreviated, there are 8 more "hits" elements. Elasticsearch by default limits the response to 10 elements)
+     ```
+   * Success, you've accomplished the "Hello world" of Elasticsearch! Try your own queries and explore the technology.
+5. Delete the data:
+   * When you are finished or just want to reset everything, delete the data.
+   * ```shell
+     ./delete-zip-areas.sh
+     ```
 
 ## Elasticsearch for Personal Use
 
@@ -50,15 +119,29 @@ in the Elasticsearch GitHub repository. Here are the steps I followed to build f
 1. Clone Elasticsearch
    * `git clone https://github.com/elastic/elasticsearch --depth 1`
    * Notice that it's a shallow clone.
-1. Use Java 17
-1. Build the distribution
+2. Use Java 17
+3. Build the distribution
    * From the `elasticsearch` project, run the following command.
    * `./gradlew localDistro` 
    * The build process will print something like the following at the very end.
    * > Elasticsearch distribution installed to /Users/davidgroomes/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.3.0-SNAPSHOT
-1. Add the distribution to your PATH
+4. Add the distribution to your PATH
    * Add something like the following to your `.bashrc` (if using Bash).
    * `export PATH="$PATH:$HOME/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.3.0-SNAPSHOT/bin"`
+5. Customize the configuration
+   * We want to run in a "local and offline" style. By default Elasticsearch will use `0.0.0.0` and bind on all network
+     interfaces we absolutely do not care for this because after all, we're not treating our computer as a networked host
+     for clients to connect to. Elasticsearch also enables SSL security too. That's pretty cool, but we don't need it
+     because we're running locally (and also using toy data). Make the following changes to the `config/elasticsearch.yml`
+     file.
+   * ```yaml
+     network.host: "[::1]"
+     network.bind_host: "[::1]"
+     network.publish_host: "[::1]"
+     http.host: "[::1]"
+     transport.host: "[::1]"
+     xpack.security.enabled: false
+     ```
 
 
 ## Notes
@@ -66,6 +149,13 @@ in the Elasticsearch GitHub repository. Here are the steps I followed to build f
 The [Quick Start](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html) has good instructions
 for getting started with your first uploads and queries to the Elasticsearch instance. It's as simple as a few `curl`
 commands!
+
+
+## Wish List
+
+General clean-ups, TODOs and things I wish to implement for this project:
+
+* More queries. Search by name, population. Aggregate the populations. Other interesting queries?
 
 
 ## Reference

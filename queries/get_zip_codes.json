@@ -1,0 +1,9 @@
+{
+  "query": {
+    "match_all": {}
+  },
+  "fields": [
+    "zip_code"
+  ],
+  "_source": false
+}

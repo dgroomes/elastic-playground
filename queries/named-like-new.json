@@ -1,0 +1,9 @@
+{
+  "query": {
+    "wildcard": {
+      "city": {
+        "value": "new*"
+      }
+    }
+  }
+}

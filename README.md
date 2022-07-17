@@ -2,6 +2,12 @@
 
 📚 Learning and exploring the Elastic stack.
 
+> Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use
+> cases. As the heart of the Elastic Stack, it centrally stores your data for lightning fast search, fine‑tuned
+> relevancy, and powerful analytics that scale with ease.
+> 
+> -- <cite>https://www.elastic.co/elasticsearch/</cite>
+
 
 ## Description
 
@@ -160,7 +166,7 @@ General clean-ups, TODOs and things I wish to implement for this project:
 
 ## Reference
 
-* [Elasticsearch GitHub repository](thttps://github.com/elastic/elasticsearch)
+* [Elasticsearch GitHub repository](https://github.com/elastic/elasticsearch)
 * [Elasticsearch guide: *Search your data*](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-your-data.html)
 * [Elasticsearch guide: *Term-level queries*](https://www.elastic.co/guide/en/elasticsearch/reference/current/term-level-queries.html)
   > You can use term-level queries to find documents based on precise values in structured data. Examples of structured data include date ranges, IP addresses, prices, or product IDs.

@@ -25,12 +25,23 @@ function choose_query() {
   done
 }
 
-function execute_query() {
-  local query_file=$(choose_query)
+function curl_elastic() {
+  local index
+  index="$1"
+
+  local query_file
+  query_file="$2"
 
   curl -X GET --show-error --silent \
-   --url "$origin/zip_areas/_search?pretty" \
-   --header 'Content-Type: application/json' --data "@${query_file}"
+     --url "$origin/${index}/_search?pretty" \
+     --header 'Content-Type: application/json' --data "@${query_file}"
+}
+
+function execute_query() {
+  local query_file
+  query_file=$(choose_query)
+
+  time curl_elastic "zip_areas" "$query_file"
 }
 
 execute_query

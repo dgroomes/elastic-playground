@@ -123,12 +123,16 @@ I think I'm going to go with the [*Build from source*](https://github.com/elasti
 in the Elasticsearch GitHub repository. Here are the steps I followed to build from source and install on my computer:
 
 1. Clone Elasticsearch
-   * `git clone https://github.com/elastic/elasticsearch --depth 1`
+   * ```shell
+     git clone https://github.com/elastic/elasticsearch --depth 1
+     ```
    * Notice that it's a shallow clone.
 2. Use Java 17
 3. Build the distribution
    * From the `elasticsearch` project, run the following command.
-   * `./gradlew localDistro` 
+   * ```shell
+     ./gradlew localDistro
+     ``` 
    * The build process will print something like the following at the very end.
    * > Elasticsearch distribution installed to /Users/davidgroomes/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.3.0-SNAPSHOT
 4. Add the distribution to your PATH

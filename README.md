@@ -50,6 +50,9 @@ Follow these instructions to execute an Elasticsearch demo:
    * It should look like this (abbreviated):
      ```text
      $ ./query-zip-areas.sh
+     1) avg-pop.json             3) match-all-no-limit.json  5) misc.json                7) named-like-new.json
+     2) high-population.json     4) match-all.json           6) named-island.json        8) zip-codes-only.json
+     Choose Elasticsearch query: 4
      {
        "took": 10,
        "timed_out": false,
@@ -104,6 +107,7 @@ Follow these instructions to execute an Elasticsearch demo:
      ./delete-zip-areas.sh
      ```
 
+
 ## Elasticsearch for Personal Use
 
 If you want to run Elasticsearch in any capacity, you'll have to understand the array of options. Elastic (the company)
@@ -134,12 +138,14 @@ in the Elasticsearch GitHub repository. Here are the steps I followed to build f
      ./gradlew localDistro
      ``` 
    * The build process will print something like the following at the very end.
-   * > Elasticsearch distribution installed to /Users/davidgroomes/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.3.0-SNAPSHOT
+   * > Elasticsearch distribution installed to /Users/dave/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.11.0-SNAPSHOT
 4. Add the distribution to your PATH
    * Add something like the following to your `.bashrc` (if using Bash).
-   * `export PATH="$PATH:$HOME/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.3.0-SNAPSHOT/bin"`
+   * ```text
+     export PATH="$PATH:$HOME/repos/opensource/elasticsearch/build/distribution/local/elasticsearch-8.11.0-SNAPSHOT/bin"
+     ```
 5. Customize the configuration
-   * We want to run in a "local and offline" style. By default Elasticsearch will use `0.0.0.0` and bind on all network
+   * We want to run in a "local and offline" style. By default, Elasticsearch will use `0.0.0.0` and bind on all network
      interfaces we absolutely do not care for this because after all, we're not treating our computer as a networked host
      for clients to connect to. Elasticsearch also enables SSL security too. That's pretty cool, but we don't need it
      because we're running locally (and also using toy data). Make the following changes to the `config/elasticsearch.yml`
@@ -166,6 +172,10 @@ commands!
 General clean-ups, TODOs and things I wish to implement for this project:
 
 * [x] DONE More queries. Search by name, population. Aggregate the populations. Other interesting queries?
+* [ ] Consider running Kibana. Might not be worth it.
+* [ ] Consider unloading some more modules. While they might be interesting, they take away from the "focus on the core"
+  nature of this project. Reducing the log noise and speeding up startup time is good.
+* [ ] Pin to a stable branch/tag of Elastic in the instructions.
 
 
 ## Reference
